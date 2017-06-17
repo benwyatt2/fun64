@@ -1,0 +1,373 @@
+<html>
+<head><title>Chatdown</title>
+<style>
+
+*		{box-sizing:border-box;}
+body	{background:#f7f4fd; font-family:mono, sans-serif; font-size:16px; line-height:24px; color:#3a3a3a; width:100%; padding:50px; margin:0px auto;}
+h1		{font-size:4em; font-weight:normal; color:#1400ff;}
+h2		{font-size:2em; font-weight:normal;}
+
+a		{color:#1400ff;}
+
+a.bar		{color:#f7f4fd; background-color:#3a3a3a; border-radius:4px; padding:5px; text-decoration:none; border-bottom:none;}
+a.bar:hover	{background-color:#1400ff; border-bottom:none; cursor:pointer;}
+
+.nav_wrap	{width:1024px; margin:auto;}
+.nav		{display:inline-block; vertical-align:top; width:50%; border-bottom:1px dashed #1400ff; padding-bottom:20px;}
+.nav:nth-of-type(2)	{text-align:right;}
+
+.page_link	{display:inline-block; width:50%; vertical-align:top; margin-top:80px;}
+.page_link:nth-of-type(2)	{text-align:right;}
+
+
+/*	INDEX styles
+	============================================= */
+.fun_bits		{width:1024px; margin:auto; font-size:14px; line-height:16px; color:#1400ff;}
+
+
+/*	FOOTER styles
+	============================================= */
+	
+.footer_wrap	{border-top:1px dashed #1400ff; padding-top:20px; width:1024px; margin:auto; margin-top:40px;}
+.footer_wrap p	{padding:5px 0;}
+.footer:nth-of-type(1) p:nth-of-type(1)	{font-size:20px; margin-right:5em;}
+
+.footer			{display:inline-block; vertical-align:top; width:70%;}
+.footer:nth-of-type(2)	{width:30%;}
+
+a.home			{font-weight:bold; color:#1400ff; text-decoration:none;}
+a.home:hover	{text-decoration:underline;}
+
+
+/*	BLOG styles
+	============================================= */
+
+span.blog_post_title{display:block; font-size:42px; line-height:46px; font-weight:bold;}
+span.blog_post_user	{display:block; font-size:12px; margin-bottom:20px;}
+
+.blog_list_wrap		{width:1024px; margin:0 auto;}
+.line				{border-top:1px dashed #1400ff; margin-top:40px; margin-bottom:40px; position:relative;}
+.blog_info			{position:absolute; right:10px; top:10px;}
+
+.blog_wrap			{width:700px; margin:auto; margin-top:40px; font-size:18px; line-height:26px; border:0;}
+
+
+/*	BLOG post styles
+	============================================= */
+
+a.blog_post_link	{display:inline-block; text-decoration:none; width:320px; height:300px; overflow:hidden; vertical-align:top; padding:20px; box-sizing:border-box; background-color:#fff; color:#3a3a3a; margin-top:40px; margin-right:20px; position:relative; border:8px solid #efefef; border-radius:6px;}
+a.blog_post_link:nth-of-type(odd)	{background-color:#1400ff; color:#fff;}
+a.blog_post_link:nth-of-type(3)		{margin-right:0;}
+a.blog_post_link:hover	{background-color:rgba(0,0,0,0.4); color:#fff;}
+
+a.blog_post_link span.blog_post_title	{display:block; font-size:21px; line-height:30px; font-weight:bold;}
+a.blog_post_link span.blog_post_snip	{display:block; height:180px; overflow:hidden;}
+a.blog_post_link span.blog_post_user	{position:absolute; bottom:0; left:0; background-color:#3a3a3a; color:#fff; width:320px; padding:10px 20px; font-size:12px; margin:0;}
+
+
+/*	CODE EMBED
+	============================================= */
+
+.blog_embed_wrap	{margin:0 auto; margin-top:40px;}
+.blog_embed_head	{width:700px; margin:auto;}
+.blog_embed_head div{width:50%; display:inline-block; vertical-align:top; border-top:1px dashed #1400ff; padding-top:40px; margin-bottom:20px;}
+.blog_embed_head div:nth-of-type(2)	{text-align:right;}
+
+
+.blog_code_wrap		{width:1024px; font-size:14px; margin:0 auto; position:relative;}
+pre.lang-lua		{height:100%; overflow:scroll; padding:16px; padding-top:0;}
+a.raw_src			{display:block; position:absolute; right:15px; top:0; color:#444; text-decoration:none; background-color:#fff; padding:5px 10px; text-align:center; z-index:666;}
+a.raw_src:hover		{color:#1400ff;}
+
+#gamecake_container, #gamecake_canvas	{width:100%; height:100%; position:absolute;}
+.code_embed_wrap	{width:1024px; height:100%; overflow:hidden; margin:0 auto; margin-top:14px;}
+.code_embed			{width:100%; height:100%; position:relative; background-color:#000;}
+.loading			{position:absolute; top:40px; right:50%; color:#fff;}
+
+
+/*	MOBILE post styles
+	============================================= */
+@media screen and (max-width:1024px) {
+
+	body		{padding:0;}	
+	pre			{margin:0 auto;}
+	.fun_bits	{font-size:12px;}
+	.fun_bits, .nav_wrap, .footer_wrap	{width:960px; margin:0 auto; padding:50px;}
+	.blog_list_wrap, a.blog_post_link	{width:860px;}
+	
+	.nav				{font-size:38px; line-height:54px; min-height:130px;}
+	.footer, .footer:nth-of-type(2)			{display:block; width:100%;}
+	
+	.footer p, .footer:nth-of-type(1) p:nth-of-type(1), .blog_wrap p		{margin:40px 0; font-size:18px; line-height:54px;}
+	
+	a.blog_post_link	{display:block; margin:0 auto; margin-bottom:40px; font-size:38px; line-height:54px;}
+	a.blog_post_link span.blog_post_title	{font-size:48px; line-height:68px;}
+	a.blog_post_link span.blog_post_snip	{height:200px;}
+	a.blog_post_link span.blog_post_user	{font-size:24px; width:960px;}
+}
+
+</style>
+<script	src="/fun64/js/jquery-3.1.1.min.js" ></script>
+<script	src="/fun64/js/google-code-prettify/prettify.js" ></script>
+<script	src="/fun64/js/google-code-prettify/lang-lua.js" ></script>
+<link rel="stylesheet" type="text/css" href="/fun64/js/google-code-prettify/skins/sons-of-obsidian.css" /></head>
+<body><div class="nav_wrap"><div class="nav">You are reading: <a href="/fun64/blog">Fun64 dev blog</a></div><div class="nav"><a href="/fun64/" class="bar">Home</a></div></div>
+<div class="blog_wrap">
+	<span class="blog_post_user">
+		<span>~ xriss</span>
+		<span><i>2017-03-19</i></span>
+	</span>
+	<span class="blog_post_title">Chatdown</span>
+	<p>Chatdown is  a markdown like text format for describing chat trees, the 
+idea is to have all the logic somewhere else and just use this for 
+describing the relationship and hierarchy of the text.</p>
+<p>The bad news is this means you have to label each part of the chat with 
+reasonable ids so the code can find it. Naming things is hard and has
+to be done.</p>
+<p>Mostly the file is interpreted as paragraphs similar to markdowns 
+paragraphs separated by empty lines, between these paragraphs lines 
+beginning with one of the special characters #&lt;&gt;= switch the mode, and 
+assign where the next set of paragraphs will be stored.</p>
+<p>Following immediately on from these special characters with no white 
+space in between are the id labels, these are used to name each set of 
+paragraphs and allow references between them. This is the most complex 
+part of the chatdown format.</p>
+<p>A chat is started by beginning a line with a # this can be thought of 
+as the talky part of an NPCs brain and a chatdown file contains 
+multiple chats. These chats can reference each other, for example one 
+NPC can check what you have told another NPC.</p>
+<p>The first paragraph of a #chat is the display name of the NPC, the rest 
+of the paragraphs are a longer description. More data can also be 
+associated with the NPC here but I will go into that another time.</p>
+<p>Responses are started with a &lt; and they belong to the current chat, 
+these are the things that an NPC says, for instance, &lt;welcome is the 
+first thing an NPC says when you talk to them.</p>
+<p>Decisions are your choices that can be made after an NPC talks, started 
+with a &gt; these are stored in the current response and are primarily 
+links to another response.</p>
+<p>With decisions the first paragraph is displayed and the remaining 
+paragraphs can be used as the spoken out loud dialogue. Some styles of 
+dialogue writing use this form, others only need the first paragraph.</p>
+<p>Proxies are variables associated with this chat, they are assigned by 
+lines beginning with an = and all paragraphs following are given to 
+this proxy. Proxies way be set inside any of the other states and the 
+change will happen as you progress through the chat. This allows us to 
+track decisions by changing a proxy inside the decision.</p>
+<p>Proxies may be expanded inside paragraphs or even option names by using 
+squiggly brackets like so {proxyname}, more complicated expansions will 
+be added later if needed.</p>
+<p>This is just an overview and its best we explain with some code, so 
+take a look at the following chatdown example which you will find 
+embedded at the top of this fun64 file. The code to parse and display 
+this format is included, probably best you do not look too closely at 
+that bit :)</p>
+<p>Since chatdown took some time to formalise, it is also going to take 
+more than one short post to explain, expect a follow up with a more 
+complex example.</p>
+	
+</div>
+
+
+<div class="blog_embed_wrap">
+
+	<div class="blog_embed_head">
+		<div><a class="bar" onclick="toggle_code()">Toggle sourcecode</a></div><div><a class="bar" onclick="toggle_fun()">Run program</a></div>
+	</div>
+	
+	<script>
+		function toggle_code() {
+			
+			var x = document.getElementById('code_src');
+			var y = document.getElementById('code_fun');
+			if (x.style.display === 'none') {
+				x.style.display = 'block';
+				y.style.display = 'none';
+			} else {
+				x.style.display = 'none';
+			}
+		}
+		
+		function toggle_fun() {
+			
+			var x = document.getElementById('code_fun');
+			var y = document.getElementById('code_src');
+			if (x.style.display === 'none') {
+				x.style.display = 'block';
+				y.style.display = 'none';
+				load_fun();
+			} else {
+				x.style.display = 'none';
+			}
+		}
+	</script>
+	
+	
+	<div class="blog_code_wrap" id="code_src" style="display:none;">
+	<a href="/fun64/blog/2017-03-19-chatdown/chatdown.fun.lua" class="raw_src">View raw lua source</a>
+	<pre id="code/fun64/blog/2017-03-19-chatdown" class="lang-lua"></pre>
+	<script>
+		$.get("/fun64/blog/2017-03-19-chatdown/chatdown.fun.lua", function(data){
+			$("[id=\"code/fun64/blog/2017-03-19-chatdown\"]").text(data).addClass("prettyprint");
+			PR.prettyPrint();
+		});
+	</script>
+</div>
+
+
+	<div class="code_embed_wrap" id="code_fun" style="display:none;"><!--	run program	-->
+		<div class="code_embed">
+			<a href="/fun64/run/?url=/fun64/blog/2017-03-19-chatdown/chatdown.fun.lua" class="raw_src">View fullscreen</a>
+			<div class="loading" id="loading_pct">Loading...Please wait...^.^=</div>
+			<script id="gamecake_init_lua" type="text/lua" >--<![CDATA[
+
+			local hx,hy,ss=128,128,3
+
+			local opts={
+				times=true, -- request simple time keeping samples
+
+				width=hx*ss,	-- display basics
+				height=hy*ss,
+				screen_scale=ss,
+			--	show="full",
+				title="fun",
+				start="wetgenes.gamecake.fun.main",
+				fun="start",
+				fps=60,
+				... -- include commandline opts
+			}
+
+			math.randomseed( os.time() ) -- try and randomise a little bit better
+
+			oven=require("wetgenes.gamecake.oven").bake(opts).preheat()
+
+			return oven:serv()
+
+		--]]></script>
+
+
+			<div id="gamecake_container">
+				<canvas id="gamecake_canvas" oncontextmenu="event.preventDefault()"></canvas>
+				<script type="text/javascript">
+					
+						var gamecake_post;
+						var Module;
+						
+						var resize=function(){
+							var e=document.getElementById("gamecake_container");
+							var w=parseFloat(window.getComputedStyle(e).width);
+							var h=parseFloat(window.getComputedStyle(e).height);
+							Module.setCanvasSize(w,h);
+							if(gamecake_post)
+							{
+								gamecake_post('cmd=lua\n','require("wetgenes.win").hardcore.resize(nil,'+w+','+h+')');
+							}
+						};
+
+						var gamecake_start=function() {
+
+				//initialise lua
+							gamecake_post('cmd=lua\n','require("wetgenes.win").emcc_start({})');
+
+				// create a pulse function and call it every frame
+							var pulse;
+							var resize_wait=16;
+							pulse=function() {
+								requestAnimationFrame(pulse); // we need to always ask to be called again
+								gamecake_post('cmd=lua\n','return gamecake_pulse()');
+								if(resize_wait>0)
+								{
+									if(--resize_wait==0)
+									{
+										console.log("resioz");
+										resize();
+									}
+								}
+							};
+							requestAnimationFrame(pulse); // start the updates
+						}
+
+						var show_progress=function(n)
+						{
+							window.show_progress_max=window.show_progress_max || 0;
+							if(window.show_progress_max<n) { window.show_progress_max=n; }
+							var pct=Math.floor(100*(1-(n/window.show_progress_max)));
+							console.log("GameCake Loading "+pct+"%");
+//							var x = document.getElementById('loading_pct');
+//							x.innerHTML = "GameCake Loading "+pct+"%";
+						};
+						
+						function load_fun() {
+							load_fun=function(){
+								resize();
+							};
+							window.addEventListener("resize",resize);
+							Module={};
+							Module.canvas=document.getElementById("gamecake_canvas");
+							Module.canvas_resize=resize;
+							Module.memoryInitializerPrefixURL="/fun64/exe/";
+							Module['_main'] = function() {
+								gamecake_post = Module.cwrap('main_post', 'int', ['string','string']);
+								gamecake_start();
+								resize();
+							};
+							Module["preInit"] = function() {
+								FS.mkdir("/lua");
+								FS.createPreloadedFile('/', "start.fun.lua", "/fun64/blog/2017-03-19-chatdown/chatdown.fun.lua", true, false);
+								FS.writeFile( "/lua/init.lua" , document.getElementById("gamecake_init_lua").innerHTML );
+							};
+							Module["monitorRunDependencies"]=show_progress;
+
+
+							window.addEventListener("keydown", function(e) {
+								// space and arrow keys
+								if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+									e.preventDefault();
+								}
+							}, false);
+							
+							var script = document.createElement('script');
+							script.src = "/fun64/exe/gamecake.js";
+
+							document.head.appendChild(script);
+						}
+					
+				</script>
+			</div>
+		
+		</div>
+	</div>
+
+</div>
+
+
+<div class="nav_wrap">
+	<div class="page_link"><a href="/fun64/blog/2017-02-12-hello-world/">Older post</a>
+</div><div class="page_link"></div>
+</div>
+
+<div class="footer_wrap">
+	<div class="footer">
+		<p>
+			<a href="/fun64/" class="home">Fun64</a> is a simple game engine designed 
+			for single file game sketches.
+		</p>
+
+		<p>
+			See <a href="/fun64/blog" class="home">dev blog</a> for updates and examples or 
+			find us on <a href="https://github.com/xriss/fun64" class="home">github</a>.
+		</p>
+	</div><div class="footer">
+		<p>
+			<a 
+			href="https://gist.github.com/search?q=fun64+lua" class="home">gists</a> are the perfect 
+			way of sharing fun64 files.
+		</p>
+
+		<p>
+			<a href="/fun64/run" class="home">run</a> provides a way 
+			of playing them in a browser.
+		</p>
+	</div>
+</div>
+</body>
+</html>
